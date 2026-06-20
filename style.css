@@ -1,3 +1,4 @@
+```css
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 *{
@@ -12,31 +13,31 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+    overflow:hidden;
     background:
     linear-gradient(
         135deg,
-        #0f172a,
-        #1e293b,
-        #334155,
-        #475569
+        #0f172a 0%,
+        #1e293b 30%,
+        #334155 70%,
+        #475569 100%
     );
-    overflow:hidden;
     position:relative;
 }
 
-/* Animated Background */
+/* Background Glow Effects */
 
 body::before{
     content:"";
     position:absolute;
-    width:500px;
-    height:500px;
-    background:#38bdf8;
+    width:450px;
+    height:450px;
+    background:#06b6d4;
     border-radius:50%;
-    top:-150px;
-    left:-150px;
-    filter:blur(120px);
-    opacity:.4;
+    top:-180px;
+    left:-180px;
+    filter:blur(130px);
+    opacity:.35;
 }
 
 body::after{
@@ -46,138 +47,155 @@ body::after{
     height:450px;
     background:#8b5cf6;
     border-radius:50%;
-    bottom:-150px;
-    right:-150px;
-    filter:blur(120px);
-    opacity:.4;
+    bottom:-180px;
+    right:-180px;
+    filter:blur(130px);
+    opacity:.35;
 }
 
-/* Main Card */
+/* Main Weather Card */
 
 .card{
     width:90%;
-    max-width:450px;
-    padding:35px 30px;
-    border-radius:25px;
-    text-align:center;
+    max-width:470px;
+    padding:35px;
+    border-radius:30px;
 
-    background:rgba(255,255,255,0.12);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.15);
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
+
+    border:1px solid rgba(255,255,255,0.15);
 
     box-shadow:
-    0 15px 40px rgba(0,0,0,.35);
+    0 25px 50px rgba(0,0,0,0.35);
 
-    animation:cardAppear 1s ease;
+    position:relative;
     z-index:10;
+
+    animation:cardShow 1s ease;
 }
 
-/* Search */
+/* Search Section */
 
 .search{
     display:flex;
+    align-items:center;
     gap:12px;
-    margin-bottom:25px;
 }
 
-.search input{
+.cityInput{
     flex:1;
     height:60px;
     border:none;
     outline:none;
-    border-radius:50px;
-    padding:0 25px;
-    font-size:16px;
 
-    background:rgba(255,255,255,.15);
+    border-radius:50px;
+
+    padding:0 25px;
+
+    background:rgba(255,255,255,0.12);
+
     color:white;
 
-    transition:.3s;
+    font-size:16px;
+
+    transition:0.3s;
 }
 
-.search input::placeholder{
-    color:rgba(255,255,255,.7);
+.cityInput::placeholder{
+    color:rgba(255,255,255,0.65);
 }
 
-.search input:focus{
-    background:rgba(255,255,255,.25);
+.cityInput:focus{
+    background:rgba(255,255,255,0.18);
     transform:scale(1.02);
 }
 
-.search button{
+.btn{
     width:60px;
     height:60px;
+
     border:none;
-    border-radius:50%;
     cursor:pointer;
 
-    background:linear-gradient(
+    border-radius:50%;
+
+    background:
+    linear-gradient(
         135deg,
         #06b6d4,
         #3b82f6
     );
 
-    transition:.3s;
+    color:white;
+
+    font-size:20px;
+
+    transition:0.4s;
 }
 
-.search button:hover{
-    transform:scale(1.1) rotate(10deg);
-}
-
-.search button img{
-    width:20px;
+.btn:hover{
+    transform:rotate(15deg) scale(1.08);
 }
 
 /* Weather Section */
 
 .weather{
+    text-align:center;
     color:white;
 }
 
 .weather-icon{
-    width:140px;
-    margin-top:10px;
+    width:160px;
+    margin-top:25px;
 
     animation:float 3s ease-in-out infinite;
 }
 
 .temp{
-    font-size:80px;
+    font-size:85px;
     font-weight:700;
     margin-top:10px;
+    line-height:1;
 }
 
 .city-name{
     font-size:35px;
     font-weight:500;
-    margin-top:-10px;
+    margin-top:10px;
 }
 
-/* Details */
+/* Weather Details */
 
 .details{
     display:flex;
     justify-content:space-between;
+    gap:15px;
     margin-top:40px;
-    gap:20px;
 }
 
 .col{
     flex:1;
+
     display:flex;
     align-items:center;
+
     gap:15px;
 
-    background:rgba(255,255,255,.08);
-    padding:15px;
-    border-radius:15px;
+    padding:18px;
 
-    transition:.3s;
+    border-radius:18px;
+
+    background:rgba(255,255,255,0.08);
+
+    transition:0.4s;
 }
 
 .col:hover{
     transform:translateY(-8px);
-    background:rgba(255,255,255,.15);
+
+    background:rgba(255,255,255,0.15);
 }
 
 .col img{
@@ -190,25 +208,39 @@ body::after{
     font-weight:600;
 }
 
-/* Animations */
-
-@keyframes float{
-
-    0%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-15px);
-    }
-
-    100%{
-        transform:translateY(0);
-    }
-
+.col p:last-child{
+    font-size:14px;
+    opacity:.8;
 }
 
-@keyframes cardAppear{
+/* Card Shine Effect */
+
+.card::before{
+    content:"";
+
+    position:absolute;
+
+    top:-50%;
+    left:-100%;
+
+    width:100px;
+    height:200%;
+
+    background:
+    linear-gradient(
+        rgba(255,255,255,0),
+        rgba(255,255,255,0.15),
+        rgba(255,255,255,0)
+    );
+
+    transform:rotate(25deg);
+
+    animation:shine 6s infinite;
+}
+
+/* Animations */
+
+@keyframes cardShow{
 
     from{
         opacity:0;
@@ -222,24 +254,78 @@ body::after{
 
 }
 
-/* Mobile */
+@keyframes float{
 
-@media(max-width:500px){
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+@keyframes shine{
+
+    0%{
+        left:-150%;
+    }
+
+    100%{
+        left:200%;
+    }
+
+}
+
+/* Mobile Responsive */
+
+@media(max-width:768px){
 
     .card{
-        padding:25px 20px;
+        padding:28px;
     }
 
     .temp{
-        font-size:60px;
+        font-size:65px;
     }
 
     .city-name{
         font-size:28px;
     }
 
+}
+
+@media(max-width:500px){
+
     .details{
         flex-direction:column;
     }
 
+    .weather-icon{
+        width:130px;
+    }
+
+    .temp{
+        font-size:55px;
+    }
+
+    .city-name{
+        font-size:24px;
+    }
+
+    .cityInput{
+        height:55px;
+    }
+
+    .btn{
+        width:55px;
+        height:55px;
+    }
+
 }
+```
